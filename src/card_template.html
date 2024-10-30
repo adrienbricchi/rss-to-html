@@ -1,0 +1,143 @@
+<!--
+  RSS-to-HTML
+  Copyright (C) 2024
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU Affero General Public License for more details.
+
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE html>
+
+<html lang="fr-FR">
+  <head>
+    <meta charset="UTF-8">
+    <style>
+
+        body {
+            font-family: 'Ubuntu', 'Arial', sans-serif;
+            background-color: rgba(0, 0, 0, 0.95);
+        }
+
+        h1, h2 {
+            margin: 0;
+            margin-block: 0;
+        }
+
+        .title-background {
+            background-color: lightgrey;
+            width: 40rem;
+            margin: auto;
+        }
+
+        .image-background {
+            margin: 1rem auto auto;
+            width: 40rem;
+            position: relative;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: auto;
+        }
+
+        .content {
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.83);
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+    </style>
+    <title>{{ title }}</title>
+  </head>
+
+  <body>
+
+    <div class="title-background">
+      <img
+        src="{{ main_image }}"
+        title="{{ title }}"
+        alt="{{ title }}"
+        width="640">
+      <div class="content">
+
+        <p class="tagline">
+          Un Podcast sur le cinéma de genre, on prend un thème bien précis, on sélectionne des films et on en discute sans prise de tête
+          !
+        </p>
+
+        <p>
+          Une bande de potes autour d'une table équipée de micros qui discutent cinéma avec un thème particulier (et parfois avec de
+          l'humour).
+        </p>
+
+        <p>
+          L'utilisation de très courts extraits du film rentre dans le cadre légal d'une utilisation dite équitable. Ce podcast respecte
+          la
+          règle d'exception
+          de parodie.
+          <br>
+          Les extraits n'ont pour but de servir que de base humoristique.
+        </p>
+
+      </div>
+    </div>
+
+    <div
+      class="image-background"
+      style="background-image: url('https://lepodcastsansvisage.fr/media/episodes/s07e02_-_Alien_romulus.jpg');">
+      <div class="content">
+
+        <h2>s07e01 : Fesse hugger (Alien Romulus)</h2>
+        <p>Aujourd'hui, on parle de l'empire romain</p>
+
+        <audio
+          style="
+            width: 36rem;
+            display: block;
+          "
+          controls
+          preload="metadata">
+          <source
+            src="https://lepodcastsansvisage.fr/episodes/s07e02_-_Alien_Romulus_v2.mp3"
+            type="audio/mpeg">
+          Votre navigateur ne supporte pas les éléments audio
+        </audio>
+
+      </div>
+    </div>
+
+    <div
+      class="image-background"
+      style="background-image: url('https://lepodcastsansvisage.fr/media/episodes/s06e03_-_Virginia_Woolf.jpg');">
+      <div class="content">
+
+        <h2>s06e03 : Vomir c'est repartir (Qui a peur de Virginia Woolf ?)</h2>
+        <p>Aujourd'hui, on parle d'une bonne grosse engueulade</p>
+
+        <audio
+          style="
+            width: 36rem;
+            display: block;
+          "
+          controls
+          preload="metadata">
+          <source
+            src="https://dts.podtrac.com/redirect.mp3/lepodcastsansvisage.fr/episodes/s06e03_-_Qui_a_peur_de_Virginia_Woolf_v3.mp3"
+            type="audio/mpeg">
+          Votre navigateur ne supporte pas les éléments audio
+        </audio>
+
+      </div>
+    </div>
+
+  </body>
+</html>
