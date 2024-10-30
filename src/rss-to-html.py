@@ -17,24 +17,24 @@
 #
 
 from jinja2 import Environment, FileSystemLoader
+import feedparser
+import time
+import requests
 
-max_score = 100
-test_name = "Python Challenge"
-episodes = [
-    {"guid": "3010801bde7649ea9777ea84fcb6e343", "title": "Fesse-hugger (Alien Romulus)"},
-    {"guid": "f1ff11110aed4c5580e2ecc697e52fdc", "title": "Vomir c'est repartir (Qui a peur de Virginia Woolf ?)"},
-]
+
+url = "https://lepodcastsansvisage.fr/feed.rss"
+site_request = requests.get(url, verify=False)
+site_response = site_request.content
+rss = feedparser.parse(site_response)
 
 environment = Environment(loader=FileSystemLoader("./"))
 template = environment.get_template("card_template.j2")
-
 content = template.render(
-    episodes= episodes,
-    title='Le Podcast sans visage',
-    main_image='https://lepodcastsansvisage.fr/media/fanart.jpg',
+    rss=rss,
+    strftime=time.strftime,
 )
 
 filename = f"index.html"
-with open(filename, mode="w", encoding="utf-8") as message:
-    message.write(content)
+with open(filename, mode="w", encoding="utf-8") as output:
+    output.write(content)
     print(f"... wrote {filename}")

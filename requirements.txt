@@ -17,3 +17,5 @@
 #
 
 Jinja2 == 3.1.4
+feedparser == 6.0.11
+requests == 2.32.3
