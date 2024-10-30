@@ -26,11 +26,12 @@ episodes = [
 ]
 
 environment = Environment(loader=FileSystemLoader("./"))
-template = environment.get_template("card_template.html")
+template = environment.get_template("card_template.j2")
 
 content = template.render(
+    episodes= episodes,
     title='Le Podcast sans visage',
-    main_image='https://lepodcastsansvisage.fr/media/fanart.jpg'
+    main_image='https://lepodcastsansvisage.fr/media/fanart.jpg',
 )
 
 filename = f"index.html"

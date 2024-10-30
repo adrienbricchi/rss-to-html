@@ -90,13 +90,14 @@
 
       </div>
     </div>
-
+    {% for episode in episodes %}
     <div
+      id="{{ episode.guid }}"
       class="image-background"
       style="background-image: url('https://lepodcastsansvisage.fr/media/episodes/s07e02_-_Alien_romulus.jpg');">
       <div class="content">
 
-        <h2>s07e01 : Fesse hugger (Alien Romulus)</h2>
+        <h2>s07e01 : {{ episode.title }}</h2>
         <p>Aujourd'hui, on parle de l'empire romain</p>
 
         <audio
@@ -114,30 +115,6 @@
 
       </div>
     </div>
-
-    <div
-      class="image-background"
-      style="background-image: url('https://lepodcastsansvisage.fr/media/episodes/s06e03_-_Virginia_Woolf.jpg');">
-      <div class="content">
-
-        <h2>s06e03 : Vomir c'est repartir (Qui a peur de Virginia Woolf ?)</h2>
-        <p>Aujourd'hui, on parle d'une bonne grosse engueulade</p>
-
-        <audio
-          style="
-            width: 36rem;
-            display: block;
-          "
-          controls
-          preload="metadata">
-          <source
-            src="https://dts.podtrac.com/redirect.mp3/lepodcastsansvisage.fr/episodes/s06e03_-_Qui_a_peur_de_Virginia_Woolf_v3.mp3"
-            type="audio/mpeg">
-          Votre navigateur ne supporte pas les éléments audio
-        </audio>
-
-      </div>
-    </div>
-
+    {% endfor %}
   </body>
 </html>
