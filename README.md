@@ -1,2 +1,4 @@
-# rss-to-html
+RSS-to-HTML
+===========
+
 Podcast to static website converter

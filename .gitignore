@@ -268,3 +268,5 @@ cython_debug/
 .idea/jpa-buddy.xml
 .idea/GitlabLint.xml
 
+src/index.html
+src/application.cfg
