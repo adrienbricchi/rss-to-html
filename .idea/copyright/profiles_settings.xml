@@ -1,0 +1,7 @@
+<component name="CopyrightManager">
+  <settings default="rss-to-html">
+    <module2copyright>
+      <element module="All" copyright="rss-to-html" />
+    </module2copyright>
+  </settings>
+</component>
