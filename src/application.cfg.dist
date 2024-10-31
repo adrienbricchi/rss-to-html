@@ -21,3 +21,19 @@
 TemplateName = card_template_fr.j2
 RssFeedUrl = https://podcast.example.invalid/feed.rss
 HtmlFileOutput = ./index.html
+
+[SOCIAL]
+
+Instagram =
+Facebook =
+Tipeee =
+TwitterX =
+Website =
+
+[LEGAL]
+
+RgaaAuditResult =
+RgaaAuditLink =
+HostName =
+HostAddress =
+HostContact =

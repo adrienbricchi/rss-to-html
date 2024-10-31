@@ -39,6 +39,7 @@ environment = Environment(loader=FileSystemLoader("./"))
 template = environment.get_template("templates/" + template_name)
 content = template.render(
     rss=rss,
+    config=config,
     strftime=time.strftime,
 )
 
