@@ -269,3 +269,4 @@ cython_debug/
 .idea/GitlabLint.xml
 
 src/index.html
+src/application.cfg

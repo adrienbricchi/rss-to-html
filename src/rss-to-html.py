@@ -20,21 +20,29 @@ from jinja2 import Environment, FileSystemLoader
 import feedparser
 import time
 import requests
+import configparser
 
+# Parse the main config values
+config = configparser.ConfigParser()
+config.read('application.cfg')
+url = config['DEFAULT']['RssFeedUrl']
+template_name = config['DEFAULT']['TemplateName']
+output_file = config['DEFAULT']['HtmlFileOutput']
 
-url = "https://lepodcastsansvisage.fr/feed.rss"
+# Fetch the RSS content
 site_request = requests.get(url, verify=False)
 site_response = site_request.content
 rss = feedparser.parse(site_response)
 
+# Deploy the template
 environment = Environment(loader=FileSystemLoader("./"))
-template = environment.get_template("card_template.j2")
+template = environment.get_template("templates/" + template_name)
 content = template.render(
     rss=rss,
     strftime=time.strftime,
 )
 
-filename = f"index.html"
-with open(filename, mode="w", encoding="utf-8") as output:
+# Write down the result
+with open(output_file, mode="w", encoding="utf-8") as output:
     output.write(content)
-    print(f"... wrote {filename}")
+    print(f"... wrote {output_file}")
