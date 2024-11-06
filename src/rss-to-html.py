@@ -21,16 +21,44 @@ import feedparser
 import time
 import requests
 import configparser
+import re
+
+
+# <editor-fold desc="Utils">
+
+
+def has_attribute(obj, attr: str) -> bool:
+    if obj is None:
+        return False
+    if not hasattr(obj, attr):
+        return False
+    if getattr(obj, attr) is None or getattr(obj, attr) == '':
+        return False
+    return True
+
+
+def sanitize_content(possible_html_content: str) -> str:
+    possible_html_content = possible_html_content.strip()
+    result = re.search(r"</?\s*[a-z-][^>]*\s*>|(&(?:[\w\d]+|#\d+|#x[a-f\d]+);)", possible_html_content)
+    if result is not None:
+        if possible_html_content.startswith("<p>") and possible_html_content.endswith("</p>"):
+            possible_html_content = possible_html_content[3:-4]
+        return possible_html_content.strip()
+    return possible_html_content.replace("\n", "<br>")
+
+
+# </editor-fold desc="Utils">
+
 
 # Parse the main config values
 config = configparser.ConfigParser()
 config.read('application.cfg')
-url = config['DEFAULT']['RssFeedUrl']
+rss_feed_url = config['DEFAULT']['RssFeedUrl']
 template_name = config['DEFAULT']['TemplateName']
 output_file = config['DEFAULT']['HtmlFileOutput']
 
 # Fetch the RSS content
-site_request = requests.get(url, verify=False)
+site_request = requests.get(rss_feed_url, verify=False)
 site_response = site_request.content
 rss = feedparser.parse(site_response)
 
@@ -40,6 +68,9 @@ template = environment.get_template("templates/" + template_name)
 content = template.render(
     rss=rss,
     config=config,
+    rss_feed_url=rss_feed_url,
+    has_attribute=has_attribute,
+    sanitize_content=sanitize_content,
     strftime=time.strftime,
 )
 
