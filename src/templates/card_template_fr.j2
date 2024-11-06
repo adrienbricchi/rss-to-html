@@ -21,6 +21,7 @@
 <html lang="fr-FR">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
 
         body {
@@ -91,6 +92,14 @@
         <p class="tagline">{{ rss.feed.subtitle }}</p>
 
         <div>
+          {% if rss_feed_url.startswith('http') %}
+            <a href="{{ rss_feed_url }}"><svg xmlns="http://www.w3.org/2000/svg"
+                                              height="2rem"
+                                              viewBox="0 0 448 512"
+                                              aria-label="Flux RSS">
+              <path d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/>
+            </svg></a>
+          {% endif %}
           {% if config['SOCIAL']['Website'] != '' %}
             <a href="{{ config['SOCIAL']['Website'] }}"><svg xmlns="http://www.w3.org/2000/svg"
                                                              height="2rem"
@@ -141,9 +150,13 @@
            style="background-image: url('{{ episode.image.href }}');">
         <div class="content">
 
-          <h2>s{{ episode.itunes_season.rjust(2, '0') }}e{{ episode.itunes_episode.rjust(2, '0') }} : {{ episode.title }}</h2>
+          <h2>
+            {% if has_attribute(episode, 'itunes_season') and has_attribute(episode, 'itunes_episode') %}
+              s{{ episode.itunes_season.rjust(2, '0') }}e{{ episode.itunes_episode.rjust(2, '0') }}&nbsp;:
+            {% endif %}
+            {{ episode.title }}</h2>
           <p class="publication_date">Publié le {{ strftime("%d/%m/%Y", episode.published_parsed) }}</p>
-          <p>{{ episode.description.replace("\n", "<br>") }}</p>
+          <p>{{ sanitize_content(episode.description) }}</p>
 
           <audio style="
                    width: 36rem;
@@ -182,7 +195,7 @@
       {% if config['LEGAL']['RgaaAuditResult'] != '' and config['LEGAL']['RgaaAuditLink'] != '' %}
         <h3>Accessibilité</h3>
         <p>
-          RGAA : <a href="{{ config['LEGAL']['RgaaAuditLink'] }}">{{ config['LEGAL']['RgaaAuditResult'] }}</a>
+          RGAA&nbsp;: <a href="{{ config['LEGAL']['RgaaAuditLink'] }}">{{ config['LEGAL']['RgaaAuditResult'] }}</a>
         </p>
       {% endif %}
 
@@ -190,7 +203,7 @@
       <p>
         Site web généré avec <a href="https://github.com/adrienbricchi/rss-to-html">RSS-to-HTML</a> - Licence Affero AGPL v3
         <br>
-        Icônes : <a href="https://fontawesome.com">Font Awesome Free</a> - Licence CC BY 4.0
+        Icônes&nbsp;: <a href="https://fontawesome.com">Font Awesome Free</a> - Licence CC BY 4.0
       </p>
 
     </div>
