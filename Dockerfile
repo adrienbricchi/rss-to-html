@@ -41,4 +41,8 @@ LABEL org.opencontainers.image.version="$CI_COMMIT_REF_NAME"
 
 ADD src /opt/rss-to-html
 
-ENTRYPOINT [ "/bin/bash" ]
+ADD requirements.txt /opt/rss-to-html
+RUN pip install -r /opt/rss-to-html/requirements.txt
+
+WORKDIR /opt/rss-to-html
+ENTRYPOINT [ "python3", "/opt/rss-to-html/rss-to-html.py" ]

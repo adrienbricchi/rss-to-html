@@ -20,6 +20,7 @@
 
 TemplateName = card_template_fr.j2
 RssFeedUrl = https://podcast.example.invalid/feed.rss
+# This is for a local/dev run only, it shall not be modified for a Docker usage
 HtmlFileOutput = ./index.html
 
 [SOCIAL]
