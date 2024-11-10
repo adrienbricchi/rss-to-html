@@ -53,14 +53,19 @@ def sanitize_content(possible_html_content: str) -> str:
 # Parse the main config values
 config = configparser.ConfigParser()
 config.read('application.cfg')
-rss_feed_url = config['DEFAULT']['RssFeedUrl']
+rss_feed_path = config['DEFAULT']['RssFeedPath']
+rss_feed_url = config['SOCIAL']['RssFeedUrl']
 template_name = config['DEFAULT']['TemplateName']
 output_file = config['DEFAULT']['HtmlFileOutput']
 
 # Fetch the RSS content
-site_request = requests.get(rss_feed_url, verify=False)
-site_response = site_request.content
-rss = feedparser.parse(site_response)
+if rss_feed_path != '':
+    rss = feedparser.parse(rss_feed_path)
+else:
+    # TODO: Fix the Python truststore, to fix the logged warning
+    site_request = requests.get(rss_feed_url, verify=False)
+    site_response = site_request.content
+    rss = feedparser.parse(site_response)
 
 # Deploy the template
 environment = Environment(loader=FileSystemLoader("./"))
