@@ -22,6 +22,7 @@ import time
 import requests
 import configparser
 import re
+import os
 
 
 # <editor-fold desc="Utils">
@@ -68,8 +69,10 @@ else:
     rss = feedparser.parse(site_response)
 
 # Deploy the template
-environment = Environment(loader=FileSystemLoader("./"))
-template = environment.get_template(template_path)
+template_directory = os.path.dirname(template_path)
+template_name = os.path.basename(template_path)
+environment = Environment(loader=FileSystemLoader(template_directory))
+template = environment.get_template(template_name)
 content = template.render(
     rss=rss,
     config=config,
