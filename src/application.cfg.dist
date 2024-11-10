@@ -18,7 +18,7 @@
 
 [DEFAULT]
 
-TemplateName = card_template_fr.j2
+TemplatePath = ./templates/card_template_fr.j2
 # If blank, the `RssFeedUrl` will be used
 RssFeedPath = ../../psv-feed/feed.rss
 # This is for a local/dev run only, it shall not be modified for a Docker usage
