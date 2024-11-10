@@ -53,3 +53,32 @@ Finally, we can run the executable:
 cd .src/
 python3 rss-to-html.py
 ```
+
+### Using a GitHub Action
+
+```yaml
+name: Build a website from the RSS feed
+
+on:
+  - push
+
+jobs:
+
+  convert_to_html:
+    name: Convert the RSS feed to HTML
+    runs-on: ubuntu-latest
+    container: adrienbricchi/rss-to-html:latest
+    steps:
+
+      - name: Checkout the repository content
+        uses: actions/checkout@v4
+
+      - name: Build the HTML file
+        run: python3 /opt/rss-to-html/rss-to-html.py
+
+      - name: Archive the HTML file
+        uses: actions/upload-artifact@v4
+        with:
+          name: rss-to-html-generated
+          path: index.html
+```

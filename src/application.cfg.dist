@@ -18,6 +18,7 @@
 
 [DEFAULT]
 
+# The path shall be /opt/rss-to-html/templates/card_template_fr.j2 for a CI usage
 TemplatePath = ./templates/card_template_fr.j2
 # If blank, the `RssFeedUrl` will be used
 RssFeedPath = ../../psv-feed/feed.rss
