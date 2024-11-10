@@ -73,7 +73,6 @@ template = environment.get_template("templates/" + template_name)
 content = template.render(
     rss=rss,
     config=config,
-    rss_feed_url=rss_feed_url,
     has_attribute=has_attribute,
     sanitize_content=sanitize_content,
     strftime=time.strftime,
