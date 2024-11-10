@@ -29,8 +29,8 @@ Run the executable, that will update/overwrite the existing `index.html` file.
 
 ```bash
 docker run \
-    -v ${CONFIG_FILE_PATH?:}:/opt/rss-to-html/application.cfg \
-    -v ${OUTPUT_FILE_PATH?:}:/opt/rss-to-html/index.html \
+    --volume ${CONFIG_FILE_PATH?:}:/opt/rss-to-html/application.cfg \
+    --volume ${OUTPUT_FILE_PATH?:}:/opt/rss-to-html/index.html \
     adrienbricchi/rss-to-html:latest
 ```
 
