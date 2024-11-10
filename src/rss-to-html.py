@@ -55,7 +55,7 @@ config = configparser.ConfigParser()
 config.read('application.cfg')
 rss_feed_path = config['DEFAULT']['RssFeedPath']
 rss_feed_url = config['SOCIAL']['RssFeedUrl']
-template_name = config['DEFAULT']['TemplateName']
+template_path = config['DEFAULT']['TemplatePath']
 output_file = config['DEFAULT']['HtmlFileOutput']
 
 # Fetch the RSS content
@@ -69,7 +69,7 @@ else:
 
 # Deploy the template
 environment = Environment(loader=FileSystemLoader("./"))
-template = environment.get_template("templates/" + template_name)
+template = environment.get_template(template_path)
 content = template.render(
     rss=rss,
     config=config,
