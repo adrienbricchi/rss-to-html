@@ -40,13 +40,13 @@
 
         .title-background {
             background-color: lightgrey;
-            width: 40rem;
+            max-width: 40rem;
             margin: auto;
         }
 
         .image-background {
             margin: 1rem auto auto;
-            width: 40rem;
+            max-width: 40rem;
             position: relative;
             background-repeat: no-repeat;
             background-position: center;
@@ -56,7 +56,7 @@
         .footer {
             padding: 2rem;
             margin: 1rem auto auto;
-            width: 36rem;
+            max-width: 36rem;
             position: relative;
             background-color: rgba(255, 255, 255, 0.83);
             text-align: justify;
@@ -85,7 +85,7 @@
       <img src="{{ rss.feed.image.href }}"
            title="{{ rss.feed.title }}"
            alt="{{ rss.feed.title }}"
-           width="640">
+           width="100%">
 
       <div class="content">
 
@@ -158,10 +158,7 @@
           <p class="publication_date">Publié le {{ strftime("%d/%m/%Y", episode.published_parsed) }}</p>
           <p>{{ sanitize_content(episode.description) }}</p>
 
-          <audio style="
-                   width: 36rem;
-                   display: block;
-                 "
+          <audio style="width: 100%;"
                  controls
                  preload="metadata">
             <source src="{{ episode.links[0].href }}"
