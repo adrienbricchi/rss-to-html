@@ -70,6 +70,10 @@
             text-justify: inter-word;
         }
 
+        .width-100 {
+            width: 100%;
+        }
+
         .publication_date {
             font-style: italic;
         }
@@ -85,7 +89,7 @@
       <img src="{{ rss.feed.image.href }}"
            title="{{ rss.feed.title }}"
            alt="{{ rss.feed.title }}"
-           width="100%">
+           class="width-100">
 
       <div class="content">
 
@@ -158,9 +162,9 @@
           <p class="publication_date">Publié le {{ strftime("%d/%m/%Y", episode.published_parsed) }}</p>
           <p>{{ sanitize_content(episode.description) }}</p>
 
-          <audio style="width: 100%;"
+          <audio class="width-100"
                  controls
-                 preload="metadata">
+                 preload="none">
             <source src="{{ episode.links[0].href }}"
                     type="{{ episode.links[0].type }}">
             Votre navigateur ne supporte pas les éléments audio
